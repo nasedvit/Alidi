@@ -1,6 +1,6 @@
-package com.irlix.alidi.domain.basket;
+package com.irlix.alidi.domain.outputDto.basket;
 
-import com.irlix.alidi.domain.product.CalculatedProduct;
+import com.irlix.alidi.domain.outputDto.product.CalculatedProduct;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

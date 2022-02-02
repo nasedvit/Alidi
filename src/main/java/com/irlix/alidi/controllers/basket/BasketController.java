@@ -1,22 +1,26 @@
 package com.irlix.alidi.controllers.basket;
 
-import com.irlix.alidi.domain.basket.Basket;
-import com.irlix.alidi.domain.basket.CalculatedBasket;
-import com.irlix.alidi.services.PriceCalculator;
+import com.irlix.alidi.domain.inputDto.basket.Basket;
+import com.irlix.alidi.domain.outputDto.basket.CalculatedBasket;
+import com.irlix.alidi.services.IPriceCalculatorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/basket")
 public class BasketController {
-    private final PriceCalculator priceCalculator;
+    private final IPriceCalculatorService priceCalculatorService;
 
-    @GetMapping("/calculate")
-    public CalculatedBasket calculate(@RequestBody Basket basket) {
-        return priceCalculator.calculate(basket);
+    @PostMapping("/calculate")
+    @ResponseBody
+    public CalculatedBasket calculate(@RequestBody @Valid Basket basket) {
+        return priceCalculatorService.calculate(basket);
     }
 }
